@@ -11,6 +11,10 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
+# Ensure the database tables exist for testing / development
+with app.app_context():
+    db.create_all()
+
 @app.route('/')
 def index():
     return 'Validations lab'
